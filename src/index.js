@@ -1,17 +1,77 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import axios from "axios";
+
+import "./styles.css";
+
+class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      todo: "",
+      todos: [{ title: "mock data" }],
+    };
+  }
+  componentDidMount() {
+    axios
+      .get("https://cjr-todo-flask-api.herokuapp.com/todos")
+      .then((res) => {
+        this.setState({
+          todos: res.data,
+        })
+      })
+      .catch((err) => console.error(err));
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      todo: e.target.value,
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
+  renderTodos = () => {
+    return this.state.todos.map((todo) => {
+      return (
+        <div>
+          <h1>{todo.title}</h1>
+        </div>
+      );
+    });
+  };
+
+  // Calling preventDefault() during any stage of event flow cancels the event,
+  // meaning that any default action normally taken by the implementation as a result of the event will not occur.
+
+  render() {
+    return (
+      <div>
+        <h1>Todo List</h1>
+        <form className="add-todo" onSubmit={this.handleSubmit}>
+          <input
+            type="text"
+            placeholder="Add Todo"
+            onChange={this.handleChange}
+            value={this.state.todo}
+          />
+          <button type="submit">Add</button>
+        </form>
+        {this.renderTodos()}
+      </div>
+    );
+  }
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// List of Todos
+// Form
