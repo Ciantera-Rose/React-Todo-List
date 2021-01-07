@@ -50,9 +50,22 @@ class App extends Component {
       .catch((err) => console.error("handleSubmit Error: ", err));
   };
 
+  deleteTodo = id => {
+    axios
+    .delete(`https://cjr-todo-flask-api.herokuapp.com/delete/todo/${id}`)
+    .then(() => {
+      this.setState({
+        todos: this.state.todos.filter(todo => {
+          return todo.id !== id
+        })
+      })
+    })
+    .catch((err) => console.error("delete Todo Error: ", err))
+  }
+
   renderTodos = () => {
     return this.state.todos.map((todo) => {
-      return <TodoItem key={todo.id} {...todo} />
+      return <TodoItem key={todo.id} {...todo} deleteTodo={this.deleteTodo} />
     })
   }
 

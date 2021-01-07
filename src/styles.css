@@ -3,14 +3,14 @@
   justify-content: center;
   color: #00cb78;
   font-family: sans-serif;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .app {
   margin-top: 2rem;
   display: grid;
   justify-items: center;
-  background-color: #454544;
+  background-color: #141402;
   border-radius: 10px;
   width: 400px;
   box-shadow: 5px 5px 5px #999;
@@ -43,6 +43,11 @@ button {
     display: flex;
     align-items: center;
     width: 95%;
+}
+
+.done {
+    color: white;
+    text-decoration: line-through;
 }
 
 
