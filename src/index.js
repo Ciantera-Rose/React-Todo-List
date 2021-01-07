@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
+import TodoItem from "./todo-item";
 
 import "./styles.css";
 
@@ -51,13 +52,9 @@ class App extends Component {
 
   renderTodos = () => {
     return this.state.todos.map((todo) => {
-      return (
-        <div key={todo.id} className="todo-item">
-          <h1>{todo.title}</h1>
-        </div>
-      );
-    });
-  };
+      return <TodoItem key={todo.id} {...todo} />
+    })
+  }
 
   // Calling preventDefault() during any stage of event flow cancels the event,
   // meaning that any default action normally taken by the implementation as a result of the event will not occur.

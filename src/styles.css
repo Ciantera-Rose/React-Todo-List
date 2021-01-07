@@ -3,6 +3,7 @@
   justify-content: center;
   color: #00cb78;
   font-family: sans-serif;
+  font-size: 0.5rem;
 }
 
 .app {
@@ -41,7 +42,7 @@ button {
 .todo-item {
     display: flex;
     align-items: center;
-    width: 80%;
+    width: 95%;
 }
 
 
